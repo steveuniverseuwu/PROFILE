@@ -2,13 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
+:root {
+  /* PINK MODE (Light Theme) */
+  --bg-main: #fff0f5; /* Lavender Blush */
+  --bg-alt: #fff1f2; /* Rose 50 */
+  --bg-card: #ffffff; /* White */
+  --border: #fce7f3; /* Pink 100 */
+
+  --text-main: #be185d; /* Pink 700 (Body Text) */
+  --text-muted: #db2777; /* Pink 600 */
+  --text-heading: #831843; /* Deep Raspberry (High Contrast) */
+
+  --color-primary: #f472b6; /* Barbie Pink */
+  --color-btn: #ff80bf; /* Button Pink */
+  --color-badge: #be185d; /* Deep Pink for Badges */
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
+.dark {
+  /* DARK MODE (Slate Theme) */
+  --bg-main: #020617; /* Slate 950 */
+  --bg-alt: #0f172a; /* Slate 900 */
+  --bg-card: #1e293b; /* Slate 800 */
+  --border: #334155; /* Slate 700 */
+
+  --text-main: #94a3b8; /* Slate 400 */
+  --text-muted: #cbd5e1; /* Slate 300 */
+  --text-heading: #ffffff; /* White */
+
+  --color-primary: #6366f1; /* Indigo 500 */
+  --color-btn: #4f46e5; /* Indigo 600 */
+  --color-badge: #a5b4fc; /* Light Indigo */
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 .no-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

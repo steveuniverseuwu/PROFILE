@@ -7,6 +7,7 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./services/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -15,45 +16,34 @@ export default {
       },
       colors: {
         // 1. BRAND COLORS
-        primary: "#f472b6", // Soft Barbie Pink
-        secondary: "#fbcfe8", // Pastel Cotton Candy
-        dark: "#be185d", // Medium Raspberry
+        primary: "var(--color-primary)",
 
-        // 2. THEME BALANCING (Pastel Light Mode)
+        // 2. THEME MAPPING
         slate: {
-          950: "#fff0f5", // Main BG -> Lavender Blush
-          900: "#fff1f2", // Alt BG  -> Rose 50
-          800: "#ffffff", // Cards   -> Pure White
-          700: "#fce7f3", // Borders -> Pink 100
+          950: "var(--bg-main)", // Main Background
+          900: "var(--bg-alt)", // Secondary Background
+          800: "var(--bg-card)", // Cards & Chat Bubbles
+          700: "var(--border)", // Borders
 
-          // Text Colors
-          600: "#db2777", // Pink 600
-          500: "#db2777", // Pink 600
-          400: "#be185d", // Pink 700 (Body text)
-          300: "#be185d", // Pink 700 (Questions)
-          200: "#9d174d", // Pink 800
-          100: "#831843",
-          50: "#ffffff",
+          600: "var(--text-muted)",
+          500: "var(--text-muted)",
+          400: "var(--text-main)", // Body Text
+          300: "var(--text-muted)",
+          // FIX: Map 200 to Heading color so it is dark/visible in Pink Mode
+          200: "var(--text-heading)",
+          100: "var(--text-heading)",
         },
 
         // 3. TEXT VISIBILITY
-        white: "#831843", // Deep Raspberry (for Headings)
+        white: "var(--text-heading)",
 
-        // 4. ACCENT & VISIBILITY FIXES
+        // 4. ACCENTS
         indigo: {
-          // FIX: Changed from Light Pink (#f9a8d4) to Deep Raspberry (#be185d)
-          // This makes "Creative Engineer" and Project Tags visible.
-          300: "#be185d",
-
-          400: "#f472b6",
-          500: "#ec4899",
-          600: "#ff80bf", // "Contact Me" Button
-          700: "#be185d", // Hover state
-        },
-        purple: {
-          400: "#e879f9", // Soft Lilac
-          500: "#d946ef", // Fuchsia
-          600: "#c026d3",
+          300: "var(--color-badge)",
+          400: "var(--color-primary)",
+          500: "var(--color-primary)",
+          600: "var(--color-btn)",
+          700: "var(--color-primary)",
         },
       },
       animation: {
