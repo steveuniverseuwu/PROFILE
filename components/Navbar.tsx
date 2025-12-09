@@ -1,40 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { PERSONAL_INFO } from "../constants";
-import { Moon, Sun } from "lucide-react"; // Make sure to import Sun and Moon
+import { Moon, Sun } from "lucide-react";
 
 const Navbar: React.FC = () => {
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+
+  // FIX: Initialize state immediately to match localStorage or system preference
+  // This prevents the icon from being wrong for a split second
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      return (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      );
+    }
+    return false;
+  });
+
   const { scrollY } = useScroll();
   const MotionNav = motion.nav as any;
 
-  // Initialize theme
+  // FIX: Single effect to handle DOM updates and localStorage whenever isDark changes
   useEffect(() => {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      setIsDark(false);
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
     if (isDark) {
-      document.documentElement.classList.remove("dark");
-      localStorage.theme = "light";
-      setIsDark(false);
-    } else {
       document.documentElement.classList.add("dark");
       localStorage.theme = "dark";
-      setIsDark(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
     }
+  }, [isDark]);
+
+  const toggleTheme = () => {
+    setIsDark(!isDark);
   };
 
   useMotionValueEvent(scrollY, "change", (latest) => {
